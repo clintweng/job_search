@@ -8,7 +8,7 @@ from urllib.parse import quote
 from email.mime.text import MIMEText
 from datetime import datetime
 
-EMAIL_TO = "clint_weng@icloud.com"
+EMAIL_TO = "plutoting@gmail.com"
 
 KEYWORDS = [
     "資料分析 兼職 遠端",
