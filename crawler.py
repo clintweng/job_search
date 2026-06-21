@@ -11,17 +11,17 @@ from datetime import datetime
 EMAIL_TO = "plutoting@gmail.com"
 
 KEYWORDS = [
-    "資料分析 兼職 遠端",
-    "數據分析 兼職 遠端",
-    "SQL 兼職 遠端",
-    "Tableau 兼職 遠端",
-    "Power BI 兼職 遠端",
-    "AI 顧問 兼職 遠端",
-    "行政助理 兼職 遠端",
-    "陪讀 兼職",
-    "寵物 兼職",
-    "毛小孩 兼職",
-    "運動按摩 兼職",
+    "資料分析",
+    "數據分析",
+    "SQL",
+    "Tableau",
+    "Power BI",
+    "AI 顧問",
+    "行政助理",
+    "陪讀",
+    "寵物",
+    "毛小孩",
+    "運動按摩",
 ]
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
