@@ -98,25 +98,52 @@ def crawl_104(keyword, pages=2):
 
 def crawl_1111(keyword, pages=2):
     rows = []
+
     for page in range(1, pages + 1):
+
         url = f"https://www.1111.com.tw/search/job?ks={quote(keyword)}&page={page}"
-        html = requests.get(url, headers=HEADERS, timeout=15).text
+
+        try:
+            response = requests.get(
+                url,
+                headers=HEADERS,
+                timeout=30
+            )
+
+            response.raise_for_status()
+            html = response.text
+
+        except requests.exceptions.RequestException as e:
+            print(
+                f"[SKIP] 1111 timeout/error: "
+                f"{keyword}, page={page}, error={e}"
+            )
+            continue
+
         soup = BeautifulSoup(html, "html.parser")
 
         for card in soup.select("article, li, div"):
+
             text = card.get_text(" ", strip=True)
+
             if len(text) < 50:
                 continue
 
             pay = extract_hourly_pay(text)
+
             if not pay:
                 continue
 
             a = card.select_one("a[href]")
             link = ""
+
             if a:
                 href = a.get("href", "")
-                link = "https://www.1111.com.tw" + href if href.startswith("/") else href
+                link = (
+                    "https://www.1111.com.tw" + href
+                    if href.startswith("/")
+                    else href
+                )
 
             rows.append({
                 "source": "1111",
@@ -167,7 +194,7 @@ def main():
 
     for keyword in KEYWORDS:
         rows += crawl_104(keyword)
-        rows += crawl_1111(keyword)
+        # rows += crawl_1111(keyword)
 
     df = pd.DataFrame(rows)
 
